@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Converter.Launcher.Lib
 {
-    public class Class1
+    class CommonFunctions
     {
     }
 }

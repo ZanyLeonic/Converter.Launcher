@@ -4,57 +4,102 @@
 /// Created by ZanyLeonic (Leo Durrant) 15/12/15
 ///====================================================================
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using POSUpdater;
-using POSUpdaterLib;
+using CefSharp.WinForms.Internals;
+using Converter.Launcher.Lib;
+using CefSharp.WinForms;
+using CefSharp;
 
-namespace POSUpdater.Forms
+namespace Converter.Launcher.App.Forms
 {
-    public partial class update : Form
+    public partial class Update : Form
     {
         /// The Uri that leads to the release notes page.
-        private Uri releaseNotesUri = new Uri("http://voidstudiosdev.github.io/ProjectOminous-Updater/versioninfo/");
+        private String releaseNotesUri = "http://voidstudiosdev.github.io/ProjectOminous-Updater/versioninfo/";
 
-        public update()
+        private ChromiumWebBrowser releasenotes;
+
+        public Update()
         {
             InitializeComponent();
+            Load += OnLoad;
+        }
+
+        private void OnLoad(object sender, EventArgs e)
+        {
+            CreateBrowser();
+        }
+
+        private void CreateBrowser()
+        {
+            releasenotes = new ChromiumWebBrowser(releaseNotesUri)
+            {
+                Dock = DockStyle.Fill,
+            };
+
+            this.browserPanel.Controls.Add(releasenotes);
+
+            /*
+            releasenotes.LoadingStateChanged += OnBrowserLoadingStateChanged;
+            releasenotes.ConsoleMessage += OnBrowserConsoleMessage;
+            releasenotes.StatusMessage += OnBrowserStatusMessage;
+            releasenotes.TitleChanged += OnBrowserTitleChanged;
+            releasenotes.AddressChanged += OnBrowserAddressChanged;
+            */
+        }
+
+        private void OnBrowserAddressChanged(object sender, AddressChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnBrowserTitleChanged(object sender, TitleChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnBrowserStatusMessage(object sender, StatusMessageEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnBrowserConsoleMessage(object sender, ConsoleMessageEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnBrowserLoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         //External objects
-        functions func = new functions();
+        // functions func = new functions();
 
         private void refreshReleaseInfoBtn_Click(object sender, EventArgs e)
         {
             // Refreshes the web browser control.
-            releaseNotes.Refresh();
+            releasenotes.Reload();
         }
 
         private void aboutBtn_Click(object sender, EventArgs e)
         {
-            about About = new about();
+            About About = new About();
             // Shows the About dialog
             About.Show();
         }
 
         private void update_Load(object sender, EventArgs e)
         {
-            string gamefolder = func.GetSourcemodsPath() + "\\projectominous";
+            //string gamefolder = func.GetSourcemodsPath() + "\\projectominous";
 
             // Debugging. Checking if the functions work.
             // MessageBox.Show(func.GetSourcemodsPath());
             // string GamefolderExists = func.ProjectOminousModFolderExists().ToString();
             // MessageBox.Show(GamefolderExists);
-
-            releaseNotes.IsWebBrowserContextMenuEnabled = false;
-            releaseNotes.Navigate(releaseNotesUri);
-
+           
+            //releaseNotes.IsWebBrowserContextMenuEnabled = false;
+            /*
             if (func.ProjectOminousModFolderExists())
             {
                 installPath.Text = "Updating...";
@@ -68,19 +113,29 @@ namespace POSUpdater.Forms
 
             localVersionBox.Text = "Updating...";
             localVersionBox.Text = func.GetLocalVersion();
+            */
         }
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
+            /*
             localVersionBox.Text = "Updating...";
             gitVersionBox.Text = "Updating...";
             localVersionBox.Text = func.GetLocalVersion();
             gitVersionBox.Text = func.GetOnlineGitVersion();
+            */
         }
 
         private void browseDir_Click(object sender, EventArgs e)
         {
-            installPath.Text = func.browseFolder(func.GetSourcemodsPath());
+           // installPath.Text = func.browseFolder(func.GetSourcemodsPath());
+        }
+
+        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PreferencesWindow prefswindow = new PreferencesWindow();
+
+            prefswindow.Show();
         }
     }
 }

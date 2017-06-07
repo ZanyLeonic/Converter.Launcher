@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Converter.Launcher.Lib")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("The library for Converter.Launcher.App.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Converter.Launcher.Lib")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Converter.Launcher.Lib Copyright (C) 2017 Leo Durrant")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

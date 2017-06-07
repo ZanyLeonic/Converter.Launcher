@@ -11,14 +11,15 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using POSUpdaterLib;
+using Converter.Launcher.Lib;
 
-namespace POSUpdater.Forms
+namespace Converter.Launcher.App.Forms
 {
-    partial class about : Form
+    partial class About : Form
     {
-        functions func = new functions();
-        public about()
+        //Functions func = new Functions();
+
+        public About()
         {
             InitializeComponent();
         }
@@ -30,12 +31,12 @@ namespace POSUpdater.Forms
 
         private void gameGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            func.OpenUri("http://github.com/VoidStudiosDev/ProjectOminous");
+            //func.OpenUri("http://github.com/VoidStudiosDev/ProjectOminous");
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            func.OpenUri("http://github.com/VoidStudiosDev/ProjectOminous-Updater");
+           // func.OpenUri("http://github.com/VoidStudiosDev/ProjectOminous-Updater");
         }
 
         private void closeBtn_Click(object sender, EventArgs e)

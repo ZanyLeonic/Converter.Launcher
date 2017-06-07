@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using POSUpdater.Forms;
+using Converter.Launcher.App.Forms;
 
-namespace POSUpdater
+namespace Converter.Launcher.App
 {
     static class Program
     {
@@ -17,7 +17,7 @@ namespace POSUpdater
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new update());
+            Application.Run(new Update());
         }
     }
 }
