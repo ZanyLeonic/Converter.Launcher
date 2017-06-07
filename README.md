@@ -1,2 +1,2 @@
-# ProjectOminious-Updater [![Build status](https://ci.appveyor.com/api/projects/status/983bq9diqhvau9bi/branch/dev?svg=true)](https://ci.appveyor.com/project/ZanyLeonic/projectominious-updater/branch/dev) [![Bulid status](https://api.travis-ci.org/VoidStudiosDev/ProjectOminious-Updater.png)](https://travis-ci.org/VoidStudiosDev/ProjectOminious-Updater)
-An updater for our Sourcemod. Written with C#.
+# Converter.Launcher
+A program written in C# to serve as an external updater and launcher for Converter.
