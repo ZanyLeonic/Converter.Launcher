@@ -13,4 +13,15 @@ namespace Converter.Launcher.Lib
         public string UpdaterDownloadFolder { get; set; }
         public string InstallFolder         { get; set; }
     }
+
+    public class DefaultPreferences
+    {
+        public Preferences appPrefs = new Preferences
+        {
+            EnableLogging = true,
+            CheckUpdatesOnStartup = true,
+            UpdaterDownloadFolder = Environment.CurrentDirectory + "\\downloads",
+            InstallFolder = Environment.CurrentDirectory + "\\Converter"
+        };
+    }
 }

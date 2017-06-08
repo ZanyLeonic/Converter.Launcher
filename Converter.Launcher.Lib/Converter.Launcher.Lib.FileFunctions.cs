@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Newtonsoft.Json;
-using Converter.Launcher.Lib;
 
 namespace Converter.Launcher.Lib
 {
@@ -21,7 +20,6 @@ namespace Converter.Launcher.Lib
         /// <returns>Content of the file.</returns>
         public string readPlainTextFile(string path)
         {
-
             var textStream = new FileStream(path, FileMode.Open, FileAccess.Read);
 
             using (var textReader = new StreamReader(textStream, Encoding.UTF8))
@@ -72,7 +70,7 @@ namespace Converter.Launcher.Lib
         /// Reads the local version of the mod.
         /// </summary>
         /// <param name="path">Path to the version.</param>
-        /// <returns>The version of the mod on the local computer. Returns "N/A" if fails.</returns>
+        /// <returns>The version of the mod on the local computer. Returns null if fails.</returns>
         public string GetLocalVersion(string path)
         {
             string versionFile = path + "\\data\\version.inf";

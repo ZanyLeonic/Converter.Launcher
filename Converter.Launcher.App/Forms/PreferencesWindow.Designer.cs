@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreferencesWindow));
             this.generalBox = new System.Windows.Forms.GroupBox();
             this.checkforupdatesbox = new System.Windows.Forms.CheckBox();
             this.checkforupdateslabel = new System.Windows.Forms.Label();
-            this.loggingCheck = new System.Windows.Forms.CheckBox();
+            this.loggingbox = new System.Windows.Forms.CheckBox();
             this.loggingLabel = new System.Windows.Forms.Label();
             this.UpdaterBox = new System.Windows.Forms.GroupBox();
             this.InstallFolderBtn = new System.Windows.Forms.Button();
@@ -48,7 +49,7 @@
             // 
             this.generalBox.Controls.Add(this.checkforupdatesbox);
             this.generalBox.Controls.Add(this.checkforupdateslabel);
-            this.generalBox.Controls.Add(this.loggingCheck);
+            this.generalBox.Controls.Add(this.loggingbox);
             this.generalBox.Controls.Add(this.loggingLabel);
             this.generalBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.generalBox.Location = new System.Drawing.Point(0, 0);
@@ -66,7 +67,6 @@
             this.checkforupdatesbox.Size = new System.Drawing.Size(15, 14);
             this.checkforupdatesbox.TabIndex = 5;
             this.checkforupdatesbox.UseVisualStyleBackColor = true;
-            this.checkforupdatesbox.CheckedChanged += new System.EventHandler(this.checkforupdatesbox_CheckedChanged);
             // 
             // checkforupdateslabel
             // 
@@ -77,15 +77,14 @@
             this.checkforupdateslabel.TabIndex = 4;
             this.checkforupdateslabel.Text = "Check for updates on startup";
             // 
-            // loggingCheck
+            // loggingbox
             // 
-            this.loggingCheck.AutoSize = true;
-            this.loggingCheck.Location = new System.Drawing.Point(313, 21);
-            this.loggingCheck.Name = "loggingCheck";
-            this.loggingCheck.Size = new System.Drawing.Size(15, 14);
-            this.loggingCheck.TabIndex = 1;
-            this.loggingCheck.UseVisualStyleBackColor = true;
-            this.loggingCheck.CheckedChanged += new System.EventHandler(this.loggingCheck_CheckedChanged);
+            this.loggingbox.AutoSize = true;
+            this.loggingbox.Location = new System.Drawing.Point(313, 21);
+            this.loggingbox.Name = "loggingbox";
+            this.loggingbox.Size = new System.Drawing.Size(15, 14);
+            this.loggingbox.TabIndex = 1;
+            this.loggingbox.UseVisualStyleBackColor = true;
             // 
             // loggingLabel
             // 
@@ -170,12 +169,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 180);
+            this.ClientSize = new System.Drawing.Size(340, 181);
             this.Controls.Add(this.UpdaterBox);
             this.Controls.Add(this.generalBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PreferencesWindow";
             this.Text = "Preferences";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PreferencesWindow_FormClosing);
             this.Load += new System.EventHandler(this.Preferences_Load);
             this.generalBox.ResumeLayout(false);
             this.generalBox.PerformLayout();
@@ -190,7 +191,7 @@
         private System.Windows.Forms.GroupBox generalBox;
         private System.Windows.Forms.CheckBox checkforupdatesbox;
         private System.Windows.Forms.Label checkforupdateslabel;
-        private System.Windows.Forms.CheckBox loggingCheck;
+        private System.Windows.Forms.CheckBox loggingbox;
         private System.Windows.Forms.Label loggingLabel;
         private System.Windows.Forms.GroupBox UpdaterBox;
         private System.Windows.Forms.Button downloadfolderbtn;

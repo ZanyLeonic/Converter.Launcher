@@ -135,7 +135,7 @@ namespace Converter.Launcher.App.Forms
         {
             PreferencesWindow prefswindow = new PreferencesWindow();
 
-            prefswindow.Show();
+            prefswindow.ShowDialog();
         }
     }
 }

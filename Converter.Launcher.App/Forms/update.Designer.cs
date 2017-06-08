@@ -1,4 +1,6 @@
-﻿namespace Converter.Launcher.App.Forms
+﻿using System.Windows.Forms;
+
+namespace Converter.Launcher.App.Forms
 {
     partial class Update
     {
@@ -30,7 +32,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Update));
             this.UpdateBtn = new System.Windows.Forms.Button();
-            this.folderPicker = new System.Windows.Forms.FolderBrowserDialog();
             this.browserPanel = new System.Windows.Forms.Panel();
             this.refreshReleaseInfoBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -50,6 +51,7 @@
             // UpdateBtn
             // 
             this.UpdateBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.UpdateBtn.Enabled = false;
             this.UpdateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UpdateBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -57,15 +59,9 @@
             this.UpdateBtn.Name = "UpdateBtn";
             this.UpdateBtn.Size = new System.Drawing.Size(874, 37);
             this.UpdateBtn.TabIndex = 0;
-            this.UpdateBtn.Text = "Check for updates";
+            this.UpdateBtn.Text = "Please wait...";
             this.UpdateBtn.UseVisualStyleBackColor = true;
             this.UpdateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
-            // 
-            // folderPicker
-            // 
-            this.folderPicker.Description = "Select the projectonimous game folder...";
-            this.folderPicker.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.folderPicker.ShowNewFolderButton = false;
             // 
             // browserPanel
             // 
@@ -77,6 +73,7 @@
             // 
             // refreshReleaseInfoBtn
             // 
+            this.refreshReleaseInfoBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.refreshReleaseInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.refreshReleaseInfoBtn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.refreshReleaseInfoBtn.Location = new System.Drawing.Point(754, 3);
@@ -85,6 +82,7 @@
             this.refreshReleaseInfoBtn.TabIndex = 11;
             this.refreshReleaseInfoBtn.Text = "Refresh news";
             this.refreshReleaseInfoBtn.UseVisualStyleBackColor = true;
+            this.refreshReleaseInfoBtn.Click += new System.EventHandler(this.refreshReleaseInfoBtn_Click);
             // 
             // panel1
             // 
@@ -103,6 +101,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.menuStrip1.Size = new System.Drawing.Size(874, 24);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
@@ -188,7 +187,6 @@
         #endregion
 
         private System.Windows.Forms.Button UpdateBtn;
-        private System.Windows.Forms.FolderBrowserDialog folderPicker;
         private System.Windows.Forms.Panel browserPanel;
         private System.Windows.Forms.Button refreshReleaseInfoBtn;
         private System.Windows.Forms.Panel panel1;
