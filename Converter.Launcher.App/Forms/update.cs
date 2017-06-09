@@ -9,6 +9,8 @@ using CefSharp.WinForms.Internals;
 using Converter.Launcher.Lib;
 using CefSharp.WinForms;
 using CefSharp;
+using log4net;
+using System.Reflection;
 
 namespace Converter.Launcher.App.Forms
 {
@@ -16,8 +18,12 @@ namespace Converter.Launcher.App.Forms
     {
         /// The Uri that leads to the release notes page.
         private String releaseNotesUri = "http://voidstudiosdev.github.io/ProjectOminous-Updater/versioninfo/";
-
+        private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private ChromiumWebBrowser releasenotes;
+
+        System.Drawing.Point NewPoint = new System.Drawing.Point();
+        int X = 0;
+        int Y = 0;
 
         public Update()
         {
@@ -27,6 +33,7 @@ namespace Converter.Launcher.App.Forms
 
         private void OnLoad(object sender, EventArgs e)
         {
+            this.log.Info("Main window loading...");
             CreateBrowser();
         }
 
@@ -37,7 +44,7 @@ namespace Converter.Launcher.App.Forms
                 Dock = DockStyle.Fill,
             };
 
-            this.browserPanel.Controls.Add(releasenotes);
+            //this.browserPanel.Controls.Add(releasenotes);
 
             /*
             releasenotes.LoadingStateChanged += OnBrowserLoadingStateChanged;
@@ -136,6 +143,23 @@ namespace Converter.Launcher.App.Forms
             PreferencesWindow prefswindow = new PreferencesWindow();
 
             prefswindow.ShowDialog();
+        }
+
+        private void Update_MouseDown(object sender, MouseEventArgs e)
+        {
+            X = Control.MousePosition.X - this.Location.X;
+            Y = Control.MousePosition.Y - this.Location.Y;
+        }
+
+        private void Update_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                NewPoint = Control.MousePosition;
+                NewPoint.X -= (X);
+                NewPoint.Y -= (Y);
+                this.Location = NewPoint;
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Converter.Launcher.App.Forms;
+using log4net.Config;
 
 namespace Converter.Launcher.App
 {
@@ -15,6 +16,7 @@ namespace Converter.Launcher.App
         [STAThread]
         static void Main()
         {
+            XmlConfigurator.Configure();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Update());

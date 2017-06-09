@@ -51,6 +51,9 @@
     <ApplicationIcon>converter.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -89,6 +92,11 @@
     <Compile Include="Forms\update.Designer.cs">
       <DependentUpon>update.cs</DependentUpon>
     </Compile>
+    <Compile Include="LauncherAssets.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LauncherAssets.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
@@ -101,6 +109,10 @@
     <EmbeddedResource Include="Forms\update.resx">
       <DependentUpon>update.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LauncherAssets.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LauncherAssets.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -111,6 +123,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="log4net.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -133,6 +146,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="converter.ico" />
+    <None Include="Resources\tomswallpapers.com_41517.jpg" />
+    <None Include="Resources\loader.gif" />
+    <None Include="Resources\loader.48.gif" />
+    <None Include="Resources\9e1b0c42fd85bd565298252c488199ad.png" />
+    <None Include="img\play.png" />
+    <None Include="img\play_hover.png" />
+    <None Include="img\quit.png" />
+    <None Include="img\quit_hover.png" />
+    <None Include="img\readme.png" />
+    <None Include="img\readme_hover.png" />
+    <None Include="img\options.png" />
+    <None Include="img\options_hover.png" />
     <Content Include="Resources\converter.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

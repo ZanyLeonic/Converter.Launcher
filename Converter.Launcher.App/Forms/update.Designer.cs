@@ -30,175 +30,203 @@ namespace Converter.Launcher.App.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Update));
-            this.UpdateBtn = new System.Windows.Forms.Button();
+            this.loadingAnimation = new System.Windows.Forms.Timer(this.components);
             this.browserPanel = new System.Windows.Forms.Panel();
-            this.refreshReleaseInfoBtn = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.versionInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.launcherBackground = new System.Windows.Forms.Panel();
+            this.launcherSidebar = new System.Windows.Forms.Panel();
+            this.loaderIndicator = new System.Windows.Forms.PictureBox();
+            this.playBtn = new System.Windows.Forms.PictureBox();
+            this.quitBtn = new System.Windows.Forms.PictureBox();
+            this.optionsBtn = new System.Windows.Forms.PictureBox();
+            this.readmeBtn = new System.Windows.Forms.PictureBox();
+            this.browserLoadingOverlay = new System.Windows.Forms.Panel();
+            this.browserStatus = new System.Windows.Forms.Label();
+            this.loaderBox = new System.Windows.Forms.PictureBox();
+            this.browserPanel.SuspendLayout();
+            this.launcherSidebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loaderIndicator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quitBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.optionsBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.readmeBtn)).BeginInit();
+            this.browserLoadingOverlay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loaderBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // UpdateBtn
+            // loadingAnimation
             // 
-            this.UpdateBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.UpdateBtn.Enabled = false;
-            this.UpdateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UpdateBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.UpdateBtn.Location = new System.Drawing.Point(0, 366);
-            this.UpdateBtn.Name = "UpdateBtn";
-            this.UpdateBtn.Size = new System.Drawing.Size(874, 37);
-            this.UpdateBtn.TabIndex = 0;
-            this.UpdateBtn.Text = "Please wait...";
-            this.UpdateBtn.UseVisualStyleBackColor = true;
-            this.UpdateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
+            this.loadingAnimation.Interval = 1000;
             // 
             // browserPanel
             // 
+            this.browserPanel.Controls.Add(this.browserLoadingOverlay);
             this.browserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browserPanel.Location = new System.Drawing.Point(0, 61);
+            this.browserPanel.Location = new System.Drawing.Point(0, 0);
             this.browserPanel.Name = "browserPanel";
-            this.browserPanel.Size = new System.Drawing.Size(874, 305);
-            this.browserPanel.TabIndex = 10;
+            this.browserPanel.Size = new System.Drawing.Size(795, 390);
+            this.browserPanel.TabIndex = 29;
             // 
-            // refreshReleaseInfoBtn
+            // launcherBackground
             // 
-            this.refreshReleaseInfoBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.refreshReleaseInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refreshReleaseInfoBtn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
-            this.refreshReleaseInfoBtn.Location = new System.Drawing.Point(754, 3);
-            this.refreshReleaseInfoBtn.Name = "refreshReleaseInfoBtn";
-            this.refreshReleaseInfoBtn.Size = new System.Drawing.Size(117, 28);
-            this.refreshReleaseInfoBtn.TabIndex = 11;
-            this.refreshReleaseInfoBtn.Text = "Refresh news";
-            this.refreshReleaseInfoBtn.UseVisualStyleBackColor = true;
-            this.refreshReleaseInfoBtn.Click += new System.EventHandler(this.refreshReleaseInfoBtn_Click);
+            this.launcherBackground.BackgroundImage = global::Converter.Launcher.App.LauncherAssets.background;
+            this.launcherBackground.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.launcherBackground.Location = new System.Drawing.Point(0, 325);
+            this.launcherBackground.Name = "launcherBackground";
+            this.launcherBackground.Size = new System.Drawing.Size(628, 65);
+            this.launcherBackground.TabIndex = 27;
             // 
-            // panel1
+            // launcherSidebar
             // 
-            this.panel1.Controls.Add(this.refreshReleaseInfoBtn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(874, 37);
-            this.panel1.TabIndex = 9;
+            this.launcherSidebar.AutoScroll = true;
+            this.launcherSidebar.BackColor = System.Drawing.SystemColors.Control;
+            this.launcherSidebar.BackgroundImage = global::Converter.Launcher.App.LauncherAssets.background;
+            this.launcherSidebar.Controls.Add(this.loaderIndicator);
+            this.launcherSidebar.Controls.Add(this.playBtn);
+            this.launcherSidebar.Controls.Add(this.quitBtn);
+            this.launcherSidebar.Controls.Add(this.optionsBtn);
+            this.launcherSidebar.Controls.Add(this.readmeBtn);
+            this.launcherSidebar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.launcherSidebar.Location = new System.Drawing.Point(628, 0);
+            this.launcherSidebar.Name = "launcherSidebar";
+            this.launcherSidebar.Size = new System.Drawing.Size(167, 390);
+            this.launcherSidebar.TabIndex = 28;
             // 
-            // menuStrip1
+            // loaderIndicator
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.toolsToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(874, 24);
-            this.menuStrip1.TabIndex = 11;
-            this.menuStrip1.Text = "menuStrip1";
+            this.loaderIndicator.BackColor = System.Drawing.Color.Transparent;
+            this.loaderIndicator.Image = global::Converter.Launcher.App.LauncherAssets.loader_48;
+            this.loaderIndicator.Location = new System.Drawing.Point(23, 12);
+            this.loaderIndicator.Name = "loaderIndicator";
+            this.loaderIndicator.Size = new System.Drawing.Size(48, 48);
+            this.loaderIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.loaderIndicator.TabIndex = 24;
+            this.loaderIndicator.TabStop = false;
             // 
-            // fileToolStripMenuItem
+            // playBtn
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.playBtn.BackColor = System.Drawing.Color.Transparent;
+            this.playBtn.Image = global::Converter.Launcher.App.LauncherAssets.play;
+            this.playBtn.Location = new System.Drawing.Point(64, 108);
+            this.playBtn.Name = "playBtn";
+            this.playBtn.Size = new System.Drawing.Size(92, 38);
+            this.playBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.playBtn.TabIndex = 19;
+            this.playBtn.TabStop = false;
             // 
-            // exitToolStripMenuItem
+            // quitBtn
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
+            this.quitBtn.BackColor = System.Drawing.Color.Transparent;
+            this.quitBtn.Image = global::Converter.Launcher.App.LauncherAssets.quit;
+            this.quitBtn.Location = new System.Drawing.Point(64, 235);
+            this.quitBtn.Name = "quitBtn";
+            this.quitBtn.Size = new System.Drawing.Size(92, 38);
+            this.quitBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.quitBtn.TabIndex = 22;
+            this.quitBtn.TabStop = false;
             // 
-            // toolsToolStripMenuItem
+            // optionsBtn
             // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.preferencesToolStripMenuItem});
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
+            this.optionsBtn.BackColor = System.Drawing.Color.Transparent;
+            this.optionsBtn.Image = global::Converter.Launcher.App.LauncherAssets.options;
+            this.optionsBtn.Location = new System.Drawing.Point(23, 152);
+            this.optionsBtn.Name = "optionsBtn";
+            this.optionsBtn.Size = new System.Drawing.Size(133, 37);
+            this.optionsBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.optionsBtn.TabIndex = 20;
+            this.optionsBtn.TabStop = false;
             // 
-            // preferencesToolStripMenuItem
+            // readmeBtn
             // 
-            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.preferencesToolStripMenuItem.Text = "Preferences";
-            this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
+            this.readmeBtn.BackColor = System.Drawing.Color.Transparent;
+            this.readmeBtn.Image = global::Converter.Launcher.App.LauncherAssets.readme;
+            this.readmeBtn.Location = new System.Drawing.Point(6, 195);
+            this.readmeBtn.Name = "readmeBtn";
+            this.readmeBtn.Size = new System.Drawing.Size(150, 34);
+            this.readmeBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.readmeBtn.TabIndex = 21;
+            this.readmeBtn.TabStop = false;
             // 
-            // helpToolStripMenuItem
+            // browserLoadingOverlay
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.versionInformationToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.browserLoadingOverlay.BackgroundImage = global::Converter.Launcher.App.LauncherAssets.background;
+            this.browserLoadingOverlay.Controls.Add(this.browserStatus);
+            this.browserLoadingOverlay.Controls.Add(this.loaderBox);
+            this.browserLoadingOverlay.Location = new System.Drawing.Point(0, 0);
+            this.browserLoadingOverlay.Name = "browserLoadingOverlay";
+            this.browserLoadingOverlay.Size = new System.Drawing.Size(628, 325);
+            this.browserLoadingOverlay.TabIndex = 0;
             // 
-            // versionInformationToolStripMenuItem
+            // browserStatus
             // 
-            this.versionInformationToolStripMenuItem.Name = "versionInformationToolStripMenuItem";
-            this.versionInformationToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.versionInformationToolStripMenuItem.Text = "Version information";
+            this.browserStatus.AutoSize = true;
+            this.browserStatus.BackColor = System.Drawing.Color.Transparent;
+            this.browserStatus.Font = new System.Drawing.Font("Segoe UI Light", 46F);
+            this.browserStatus.ForeColor = System.Drawing.Color.White;
+            this.browserStatus.Location = new System.Drawing.Point(200, 108);
+            this.browserStatus.Name = "browserStatus";
+            this.browserStatus.Size = new System.Drawing.Size(245, 84);
+            this.browserStatus.TabIndex = 0;
+            this.browserStatus.Text = "Loading";
             // 
-            // toolStripSeparator1
+            // loaderBox
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(176, 6);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.loaderBox.BackColor = System.Drawing.Color.Transparent;
+            this.loaderBox.BackgroundImage = global::Converter.Launcher.App.LauncherAssets.loader_48;
+            this.loaderBox.Location = new System.Drawing.Point(146, 130);
+            this.loaderBox.Name = "loaderBox";
+            this.loaderBox.Size = new System.Drawing.Size(48, 48);
+            this.loaderBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.loaderBox.TabIndex = 23;
+            this.loaderBox.TabStop = false;
             // 
             // Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(874, 403);
+            this.ClientSize = new System.Drawing.Size(795, 390);
+            this.Controls.Add(this.launcherBackground);
+            this.Controls.Add(this.launcherSidebar);
             this.Controls.Add(this.browserPanel);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.UpdateBtn);
-            this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Update";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.update_Load);
-            this.panel1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Update_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Update_MouseMove);
+            this.browserPanel.ResumeLayout(false);
+            this.launcherSidebar.ResumeLayout(false);
+            this.launcherSidebar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loaderIndicator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quitBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.optionsBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.readmeBtn)).EndInit();
+            this.browserLoadingOverlay.ResumeLayout(false);
+            this.browserLoadingOverlay.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loaderBox)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button UpdateBtn;
-        private System.Windows.Forms.Panel browserPanel;
-        private System.Windows.Forms.Button refreshReleaseInfoBtn;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem versionInformationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private PictureBox readmeBtn;
+        private Timer loadingAnimation;
+        private Panel launcherBackground;
+        private Panel launcherSidebar;
+        private PictureBox loaderIndicator;
+        private PictureBox playBtn;
+        private PictureBox quitBtn;
+        private PictureBox optionsBtn;
+        private PictureBox loaderBox;
+        private Panel browserPanel;
+        private Panel browserLoadingOverlay;
+        private Label browserStatus;
     }
 }
 
