@@ -54,8 +54,8 @@
             this.generalBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.generalBox.Location = new System.Drawing.Point(0, 0);
             this.generalBox.Name = "generalBox";
-            this.generalBox.Size = new System.Drawing.Size(340, 61);
-            this.generalBox.TabIndex = 0;
+            this.generalBox.Size = new System.Drawing.Size(344, 61);
+            this.generalBox.TabIndex = 2;
             this.generalBox.TabStop = false;
             this.generalBox.Text = "General";
             // 
@@ -106,8 +106,8 @@
             this.UpdaterBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.UpdaterBox.Location = new System.Drawing.Point(0, 61);
             this.UpdaterBox.Name = "UpdaterBox";
-            this.UpdaterBox.Size = new System.Drawing.Size(340, 121);
-            this.UpdaterBox.TabIndex = 1;
+            this.UpdaterBox.Size = new System.Drawing.Size(344, 121);
+            this.UpdaterBox.TabIndex = 3;
             this.UpdaterBox.TabStop = false;
             this.UpdaterBox.Text = "Updater";
             // 
@@ -169,12 +169,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 181);
+            this.ClientSize = new System.Drawing.Size(344, 181);
             this.Controls.Add(this.UpdaterBox);
             this.Controls.Add(this.generalBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PreferencesWindow";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Preferences";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PreferencesWindow_FormClosing);
             this.Load += new System.EventHandler(this.Preferences_Load);
@@ -187,18 +189,17 @@
         }
 
         #endregion
-
         private System.Windows.Forms.GroupBox generalBox;
         private System.Windows.Forms.CheckBox checkforupdatesbox;
         private System.Windows.Forms.Label checkforupdateslabel;
         private System.Windows.Forms.CheckBox loggingbox;
         private System.Windows.Forms.Label loggingLabel;
         private System.Windows.Forms.GroupBox UpdaterBox;
-        private System.Windows.Forms.Button downloadfolderbtn;
-        private System.Windows.Forms.TextBox downloadfolderbox;
-        private System.Windows.Forms.Label downloadfolderlabel;
         private System.Windows.Forms.Button InstallFolderBtn;
         private System.Windows.Forms.TextBox InstallfolderBox;
         private System.Windows.Forms.Label InstallFolderLabel;
+        private System.Windows.Forms.Button downloadfolderbtn;
+        private System.Windows.Forms.TextBox downloadfolderbox;
+        private System.Windows.Forms.Label downloadfolderlabel;
     }
 }

@@ -11,19 +11,26 @@ using CefSharp.WinForms;
 using CefSharp;
 using log4net;
 using System.Reflection;
+using System.Drawing;
 
 namespace Converter.Launcher.App.Forms
 {
     public partial class Update : Form
     {
+
+        delegate void SetBoolDelegate(bool parameter);
+
         /// The Uri that leads to the release notes page.
-        private String releaseNotesUri = "http://voidstudiosdev.github.io/ProjectOminous-Updater/versioninfo/";
+        private String releaseNotesUri = "http://localhost";
         private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private ChromiumWebBrowser releasenotes;
 
         System.Drawing.Point NewPoint = new System.Drawing.Point();
         int X = 0;
         int Y = 0;
+
+        System.Media.SoundPlayer player =
+                new System.Media.SoundPlayer();
 
         public Update()
         {
@@ -34,7 +41,15 @@ namespace Converter.Launcher.App.Forms
         private void OnLoad(object sender, EventArgs e)
         {
             this.log.Info("Main window loading...");
+
             CreateBrowser();
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            releasenotes.LoadingStateChanged += OnLoadingStateChanged;
+
+            appLabel.Parent = launcherBackground;
+            appLabel.Text = LauncherAssets.AppName;
+
+            loadingAnimation.Start();
         }
 
         private void CreateBrowser()
@@ -44,7 +59,7 @@ namespace Converter.Launcher.App.Forms
                 Dock = DockStyle.Fill,
             };
 
-            //this.browserPanel.Controls.Add(releasenotes);
+            this.browserPanel.Controls.Add(releasenotes);
 
             /*
             releasenotes.LoadingStateChanged += OnBrowserLoadingStateChanged;
@@ -160,6 +175,210 @@ namespace Converter.Launcher.App.Forms
                 NewPoint.Y -= (Y);
                 this.Location = NewPoint;
             }
+        }
+
+        private void playBtnFocus()
+        {
+            player.Stream = LauncherAssets.menu_focus;
+            player.Play();
+        }
+
+        private void playBtnClick()
+        {
+            player.Stream = LauncherAssets.menu_accept;
+            player.Play();
+        }
+
+        private void launchBtn_Click(object sender, EventArgs e)
+        {
+            playBtnClick();
+        }
+
+        private void launchBtn_MouseEnter(object sender, EventArgs e)
+        {
+            launchBtn.Image = LauncherAssets.launch_hover;
+            playBtnFocus();
+        }
+
+        private void launchBtn_MouseLeave(object sender, EventArgs e)
+        {
+            launchBtn.Image = LauncherAssets.launch;
+        }
+
+        private void optionsBtn_MouseEnter(object sender, EventArgs e)
+        {
+            optionsBtn.Image = LauncherAssets.options_hover;
+            playBtnFocus();
+        }
+
+        private void optionsBtn_MouseLeave(object sender, EventArgs e)
+        {
+            optionsBtn.Image = LauncherAssets.options;
+        }
+
+        private void helpBtn_MouseEnter(object sender, EventArgs e)
+        {
+            helpBtn.Image = LauncherAssets.help_hover;
+            playBtnFocus();
+        }
+
+        private void helpBtn_MouseLeave(object sender, EventArgs e)
+        {
+            helpBtn.Image = LauncherAssets.help;
+        }
+
+        private void quitBtn_Click(object sender, EventArgs e)
+        {
+            playBtnClick();
+            this.Dispose();
+        }
+
+        private void helpBtn_Click(object sender, EventArgs e)
+        {
+            playBtnClick();
+            helpToolTip.Show(Cursor.Position);
+        }
+
+        private void quitBtn_MouseEnter(object sender, EventArgs e)
+        {
+            quitBtn.Image = LauncherAssets.quit_hover;
+            playBtnFocus();
+        }
+
+        private void quitBtn_MouseLeave(object sender, EventArgs e)
+        {
+            quitBtn.Image = LauncherAssets.quit;
+        }
+
+        private void optionsBtn_Click(object sender, EventArgs e)
+        {
+            PreferencesWindow prefwindow = new PreferencesWindow();
+            prefwindow.Left = this.Left + this.Width;
+            prefwindow.Top = this.Top + (this.Height - prefwindow.Height) / 2;
+            
+            playBtnClick();
+            prefwindow.ShowDialog();
+        }
+
+        private void versionInformationToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            playBtnFocus();
+        }
+
+        private void aboutToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            playBtnFocus();
+        }
+
+        private void versionInformationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            playBtnClick();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About ab = new About();
+
+            playBtnClick();
+            ab.ShowDialog();
+        }
+
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            launchBtn.Image = LauncherAssets.launch_hover;
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            launchBtn.Image = LauncherAssets.launch;
+        }
+
+        private void loadingAnimation_Tick(object sender, EventArgs e)
+        {
+            if (browserStatus.Text == "Loading")
+            {
+                browserStatus.Text = "Loading.";
+            }
+            else if (browserStatus.Text == "Loading.")
+            {
+                browserStatus.Text = "Loading..";
+            }
+            else if (browserStatus.Text == "Loading..")
+            {
+                browserStatus.Text = "Loading...";
+            }
+            else if (browserStatus.Text == "Loading...")
+            {
+                browserStatus.Text = "Loading";
+            }
+        }
+
+        private void OnLoadingStateChanged(object sender, LoadingStateChangedEventArgs args)
+        {
+            if (!args.IsLoading)
+            {
+                this.SetBrowserLoadingOverlayVisiblity(false);
+                this.SetLoaderVisiblity(false);
+                this.SetLoader2Visiblity(false);
+            }
+            else
+            {
+                this.SetBrowserLoadingOverlayVisiblity(true);
+                this.SetLoaderVisiblity(true);
+                this.SetLoader2Visiblity(true);
+            }
+        }
+
+        private void SetBrowserLoadingOverlayVisiblity(bool state)
+        {
+            if (this.browserLoadingOverlay.InvokeRequired)
+            {
+                SetBoolDelegate d = new SetBoolDelegate(SetBrowserLoadingOverlayVisiblity);
+                this.Invoke(d, new object[] { state });
+            }
+            else
+            {
+                this.browserLoadingOverlay.Visible = state;
+            }
+        }
+
+        private void SetLoaderVisiblity(bool state)
+        {
+            /*
+            if (this.loaderBox.InvokeRequired)
+            {
+                SetBoolDelegate d = new SetBoolDelegate(SetLoaderVisiblity);
+                this.Invoke(d, new object[] { state });
+            }
+            else
+            {
+                this.loaderBox.Visible = state;
+            }
+            */
+        }
+
+        private void SetLoader2Visiblity(bool state)
+        {
+            if (this.loaderIndicator.InvokeRequired)
+            {
+                SetBoolDelegate d = new SetBoolDelegate(SetLoader2Visiblity);
+                this.Invoke(d, new object[] { state });
+            }
+            else
+            {
+                this.loaderIndicator.Visible = state;
+            }
+        }
+
+        private void checkForUpdatesBtn_MouseEnter(object sender, EventArgs e)
+        {
+            checkForUpdatesBtn.Image = LauncherAssets.checkforupdates_hover;
+            playBtnFocus();
+        }
+
+        private void checkForUpdatesBtn_MouseLeave(object sender, EventArgs e)
+        {
+            checkForUpdatesBtn.Image = LauncherAssets.checkforupdates;
         }
     }
 }
