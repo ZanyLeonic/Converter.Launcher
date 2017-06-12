@@ -41,12 +41,16 @@
             this.downloadfolderbtn = new System.Windows.Forms.Button();
             this.downloadfolderbox = new System.Windows.Forms.TextBox();
             this.downloadfolderlabel = new System.Windows.Forms.Label();
+            this.launcherSoundsBox = new System.Windows.Forms.CheckBox();
+            this.launchersoundsLabel = new System.Windows.Forms.Label();
             this.generalBox.SuspendLayout();
             this.UpdaterBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // generalBox
             // 
+            this.generalBox.Controls.Add(this.launcherSoundsBox);
+            this.generalBox.Controls.Add(this.launchersoundsLabel);
             this.generalBox.Controls.Add(this.checkforupdatesbox);
             this.generalBox.Controls.Add(this.checkforupdateslabel);
             this.generalBox.Controls.Add(this.loggingbox);
@@ -54,7 +58,7 @@
             this.generalBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.generalBox.Location = new System.Drawing.Point(0, 0);
             this.generalBox.Name = "generalBox";
-            this.generalBox.Size = new System.Drawing.Size(344, 61);
+            this.generalBox.Size = new System.Drawing.Size(344, 74);
             this.generalBox.TabIndex = 2;
             this.generalBox.TabStop = false;
             this.generalBox.Text = "General";
@@ -80,7 +84,7 @@
             // loggingbox
             // 
             this.loggingbox.AutoSize = true;
-            this.loggingbox.Location = new System.Drawing.Point(313, 21);
+            this.loggingbox.Location = new System.Drawing.Point(313, 22);
             this.loggingbox.Name = "loggingbox";
             this.loggingbox.Size = new System.Drawing.Size(15, 14);
             this.loggingbox.TabIndex = 1;
@@ -104,7 +108,7 @@
             this.UpdaterBox.Controls.Add(this.downloadfolderbox);
             this.UpdaterBox.Controls.Add(this.downloadfolderlabel);
             this.UpdaterBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.UpdaterBox.Location = new System.Drawing.Point(0, 61);
+            this.UpdaterBox.Location = new System.Drawing.Point(0, 74);
             this.UpdaterBox.Name = "UpdaterBox";
             this.UpdaterBox.Size = new System.Drawing.Size(344, 121);
             this.UpdaterBox.TabIndex = 3;
@@ -165,11 +169,29 @@
             this.downloadfolderlabel.TabIndex = 6;
             this.downloadfolderlabel.Text = "Updater download folder";
             // 
+            // launcherSoundsBox
+            // 
+            this.launcherSoundsBox.AutoSize = true;
+            this.launcherSoundsBox.Location = new System.Drawing.Point(313, 47);
+            this.launcherSoundsBox.Name = "launcherSoundsBox";
+            this.launcherSoundsBox.Size = new System.Drawing.Size(15, 14);
+            this.launcherSoundsBox.TabIndex = 7;
+            this.launcherSoundsBox.UseVisualStyleBackColor = true;
+            // 
+            // launchersoundsLabel
+            // 
+            this.launchersoundsLabel.AutoSize = true;
+            this.launchersoundsLabel.Location = new System.Drawing.Point(12, 48);
+            this.launchersoundsLabel.Name = "launchersoundsLabel";
+            this.launchersoundsLabel.Size = new System.Drawing.Size(121, 13);
+            this.launchersoundsLabel.TabIndex = 6;
+            this.launchersoundsLabel.Text = "Enable launcher sounds";
+            // 
             // PreferencesWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 181);
+            this.ClientSize = new System.Drawing.Size(344, 199);
             this.Controls.Add(this.UpdaterBox);
             this.Controls.Add(this.generalBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -201,5 +223,7 @@
         private System.Windows.Forms.Button downloadfolderbtn;
         private System.Windows.Forms.TextBox downloadfolderbox;
         private System.Windows.Forms.Label downloadfolderlabel;
+        private System.Windows.Forms.CheckBox launcherSoundsBox;
+        private System.Windows.Forms.Label launchersoundsLabel;
     }
 }

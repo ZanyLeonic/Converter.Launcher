@@ -38,7 +38,8 @@
             // appName
             // 
             this.appName.AutoSize = true;
-            this.appName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.appName.BackColor = System.Drawing.Color.Transparent;
+            this.appName.ForeColor = System.Drawing.Color.White;
             this.appName.Location = new System.Drawing.Point(101, 146);
             this.appName.Name = "appName";
             this.appName.Size = new System.Drawing.Size(35, 13);
@@ -48,7 +49,8 @@
             // appVersion
             // 
             this.appVersion.AutoSize = true;
-            this.appVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.appVersion.BackColor = System.Drawing.Color.Transparent;
+            this.appVersion.ForeColor = System.Drawing.Color.White;
             this.appVersion.Location = new System.Drawing.Point(197, 146);
             this.appVersion.Name = "appVersion";
             this.appVersion.Size = new System.Drawing.Size(35, 13);
@@ -72,6 +74,7 @@
             this.closeBtn.Text = "r";
             this.closeBtn.UseVisualStyleBackColor = false;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click_1);
+            this.closeBtn.MouseEnter += new System.EventHandler(this.closeBtn_MouseEnter);
             // 
             // pictureBox1
             // 
@@ -81,7 +84,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(128, 128);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.pictureBox1_LoadCompleted);
             // 
             // About
             // 
@@ -106,7 +108,6 @@
             this.Text = "About";
             this.TransparencyKey = System.Drawing.Color.Magenta;
             this.Load += new System.EventHandler(this.about_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.About_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.About_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

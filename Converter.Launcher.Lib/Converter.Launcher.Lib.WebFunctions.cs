@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Net;
 using Microsoft.Win32;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace Converter.Launcher.Lib
 {
@@ -65,6 +66,27 @@ namespace Converter.Launcher.Lib
                 Debug.WriteLine(ex.InnerException);
 
                 MessageBox.Show("Exception while trying to open: " + path + "." + Environment.NewLine + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="JSONurl"></param>
+        /// <returns></returns>
+        public object GetOnlineVersion(string JSONurl)
+        {
+            string versionJSON = JSONurl;
+
+            try
+            {
+                VersionInfo ver = JsonConvert.DeserializeObject <VersionInfo>(ReadOnlineFile(new Uri(versionJSON)));
+
+                return ver.version;
+            }
+            catch (Exception ex)
+            {
+                return ex;
             }
         }
 

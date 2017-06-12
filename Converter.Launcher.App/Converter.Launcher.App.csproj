@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Converter.Launcher.App</RootNamespace>
     <AssemblyName>Converter.Launcher.App</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -82,6 +82,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppStartup.cs" />
     <Compile Include="Forms\about.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +101,7 @@
     <Compile Include="Forms\update.Designer.cs">
       <DependentUpon>update.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalVariables.cs" />
     <Compile Include="LauncherAssets.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -156,30 +158,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="converter.ico" />
+    <None Include="Resources\help_hover.png" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\readme_hover.png" />
+    <None Include="Resources\readme.png" />
+    <None Include="Resources\quit_hover.png" />
+    <None Include="Resources\quit.png" />
+    <None Include="Resources\play_hover.png" />
+    <None Include="Resources\play.png" />
+    <None Include="Resources\options_hover.png" />
+    <None Include="Resources\options.png" />
+    <None Include="Resources\launch_hover.png" />
+    <None Include="Resources\launch.png" />
+    <None Include="Resources\launcher_background.jpg" />
     <None Include="Resources\converter.png" />
     <None Include="Resources\menu_back.wav" />
     <None Include="Resources\menu_accept.wav" />
     <None Include="Resources\menu_focus.wav" />
     <None Include="Resources\menu_countdown.wav" />
-    <None Include="Resources\tomswallpapers.com_41517.jpg" />
     <None Include="Resources\loader.gif" />
     <None Include="Resources\loader.48.gif" />
-    <None Include="Resources\9e1b0c42fd85bd565298252c488199ad.png" />
-    <None Include="img\play.png" />
-    <None Include="img\play_hover.png" />
-    <None Include="img\quit.png" />
-    <None Include="img\quit_hover.png" />
-    <None Include="img\readme.png" />
-    <None Include="img\readme_hover.png" />
-    <None Include="img\options.png" />
-    <None Include="img\options_hover.png" />
-    <None Include="img\launch.png" />
-    <None Include="img\launch_hover.png" />
-    <None Include="img\help.png" />
-    <None Include="img\help_hover.png" />
-    <None Include="img\appicon.bmp" />
-    <None Include="img\checkforupdates.png" />
-    <None Include="img\checkforupdates_hover.png" />
+    <None Include="Resources\appicon.bmp" />
+    <None Include="Resources\Background.png" />
+    <None Include="Resources\checkforupdates.png" />
+    <None Include="Resources\checkforupdates_hover.png" />
     <Content Include="Resources\converter.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

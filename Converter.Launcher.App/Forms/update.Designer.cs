@@ -48,6 +48,7 @@ namespace Converter.Launcher.App.Forms
             this.browserLoadingOverlay = new System.Windows.Forms.Panel();
             this.browserStatus = new System.Windows.Forms.Label();
             this.browserPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.helpToolTip.SuspendLayout();
             this.launcherBackground.SuspendLayout();
             this.launcherSidebar.SuspendLayout();
@@ -67,6 +68,7 @@ namespace Converter.Launcher.App.Forms
             this.versionInformationToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolTip.Name = "helpToolTip";
+            this.helpToolTip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.helpToolTip.Size = new System.Drawing.Size(180, 48);
             // 
             // versionInformationToolStripMenuItem
@@ -105,17 +107,21 @@ namespace Converter.Launcher.App.Forms
             // 
             this.checkForUpdatesBtn.BackColor = System.Drawing.Color.Transparent;
             this.checkForUpdatesBtn.FlatAppearance.BorderSize = 0;
+            this.checkForUpdatesBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.checkForUpdatesBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.checkForUpdatesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkForUpdatesBtn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkForUpdatesBtn.ForeColor = System.Drawing.Color.White;
             this.checkForUpdatesBtn.Image = global::Converter.Launcher.App.LauncherAssets.checkforupdates;
-            this.checkForUpdatesBtn.Location = new System.Drawing.Point(441, 30);
+            this.checkForUpdatesBtn.Location = new System.Drawing.Point(431, 13);
             this.checkForUpdatesBtn.Name = "checkForUpdatesBtn";
-            this.checkForUpdatesBtn.Size = new System.Drawing.Size(181, 23);
+            this.checkForUpdatesBtn.Size = new System.Drawing.Size(191, 41);
             this.checkForUpdatesBtn.TabIndex = 1;
+            this.checkForUpdatesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.checkForUpdatesBtn.UseVisualStyleBackColor = false;
-            this.checkForUpdatesBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Update_MouseDown);
+            this.checkForUpdatesBtn.Click += new System.EventHandler(this.checkForUpdatesBtn_Click);
             this.checkForUpdatesBtn.MouseEnter += new System.EventHandler(this.checkForUpdatesBtn_MouseEnter);
             this.checkForUpdatesBtn.MouseLeave += new System.EventHandler(this.checkForUpdatesBtn_MouseLeave);
-            this.checkForUpdatesBtn.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Update_MouseMove);
             // 
             // appLabel
             // 
@@ -136,6 +142,7 @@ namespace Converter.Launcher.App.Forms
             this.launcherSidebar.AutoScroll = true;
             this.launcherSidebar.BackColor = System.Drawing.SystemColors.Control;
             this.launcherSidebar.BackgroundImage = global::Converter.Launcher.App.LauncherAssets.background;
+            this.launcherSidebar.Controls.Add(this.button1);
             this.launcherSidebar.Controls.Add(this.quitBtn);
             this.launcherSidebar.Controls.Add(this.helpBtn);
             this.launcherSidebar.Controls.Add(this.optionsBtn);
@@ -269,8 +276,19 @@ namespace Converter.Launcher.App.Forms
             this.browserPanel.Size = new System.Drawing.Size(628, 325);
             this.browserPanel.TabIndex = 30;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(157, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(10, 10);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            // 
             // Update
             // 
+            this.AcceptButton = this.launchBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -316,6 +334,7 @@ namespace Converter.Launcher.App.Forms
         private Panel browserPanel;
         private Label appLabel;
         private Button checkForUpdatesBtn;
+        private Button button1;
     }
 }
 

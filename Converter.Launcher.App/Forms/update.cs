@@ -12,6 +12,10 @@ using CefSharp;
 using log4net;
 using System.Reflection;
 using System.Drawing;
+using System.Threading;
+using System.IO;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Converter.Launcher.App.Forms
 {
@@ -21,7 +25,7 @@ namespace Converter.Launcher.App.Forms
         delegate void SetBoolDelegate(bool parameter);
 
         /// The Uri that leads to the release notes page.
-        private String releaseNotesUri = "http://localhost";
+        private String releaseNotesUri = LauncherAssets.releasenotesURL;
         private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private ChromiumWebBrowser releasenotes;
 
@@ -31,6 +35,18 @@ namespace Converter.Launcher.App.Forms
 
         System.Media.SoundPlayer player =
                 new System.Media.SoundPlayer();
+
+        FileFunctions ff = new FileFunctions();
+        WebFunctions wb = new WebFunctions();
+
+        DefaultPreferences defprefs = new DefaultPreferences();
+        GlobalVariables gv = new GlobalVariables();
+
+        public Preferences preferences = new Preferences();
+        DefaultPreferences DefaultPreferences = new DefaultPreferences();
+
+        bool read_error = false;
+        int prefsvers = -1;
 
         public Update()
         {
@@ -46,8 +62,71 @@ namespace Converter.Launcher.App.Forms
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             releasenotes.LoadingStateChanged += OnLoadingStateChanged;
 
-            appLabel.Parent = launcherBackground;
+            checkForUpdatesBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
+            launchBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
+            optionsBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
+            helpBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
+            quitBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
+
+            read_error = false;
+
+            if (File.Exists(gv.PreferencesFile))
+            {
+                try
+                {
+                    preferences = JsonConvert.DeserializeObject<Preferences>(ff.readPlainTextFile(gv.PreferencesFile));
+
+                    prefsvers = 0;
+                }
+                catch (Exception ex)
+                {
+                    DialogResult results = MessageBox.Show("Failed to load '" + gv.PreferencesFile + "', make sure the file is accessible." + Environment.NewLine + "Exception: " + Environment.NewLine + ex, ex.Message, MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+
+                    if (results == DialogResult.Abort)
+                    {
+                        read_error = true;
+                        this.Dispose();
+                    }
+                    else if (results == DialogResult.Retry)
+                    {
+                        OnLoad(sender, e);
+                    }
+                }
+
+            }
+            else
+            {
+                /// If the download folder doesn't exist now, create it!
+                if (!Directory.Exists(defprefs.appPrefs.UpdaterDownloadFolder))
+                {
+                    Directory.CreateDirectory(defprefs.appPrefs.UpdaterDownloadFolder);
+                }
+
+                try
+                {
+                    ff.writeSettingsJsonFile(gv.PreferencesFile, defprefs.appPrefs);
+                    prefsvers = 1;
+                }
+                catch (Exception ex)
+                {
+                    DialogResult results = MessageBox.Show("Failed to load '" + gv.PreferencesFile + "', make sure the file is accessible." + Environment.NewLine + "Exception: " + Environment.NewLine + ex, ex.Message, MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+
+                    if (results == DialogResult.Abort)
+                    {
+                        read_error = true;
+                        this.Dispose();
+                    }
+                    else if (results == DialogResult.Retry)
+                    {
+                        OnLoad(sender, e);
+                    }
+                }
+            }
+
+        appLabel.Parent = launcherBackground;
             appLabel.Text = LauncherAssets.AppName;
+
+            checkForUpdatesBtn.Parent = launcherBackground;
 
             loadingAnimation.Start();
         }
@@ -68,6 +147,11 @@ namespace Converter.Launcher.App.Forms
             releasenotes.TitleChanged += OnBrowserTitleChanged;
             releasenotes.AddressChanged += OnBrowserAddressChanged;
             */
+        }
+
+        protected void CheckForUpdates()
+        {
+           
         }
 
         private void OnBrowserAddressChanged(object sender, AddressChangedEventArgs e)
@@ -179,14 +263,20 @@ namespace Converter.Launcher.App.Forms
 
         private void playBtnFocus()
         {
-            player.Stream = LauncherAssets.menu_focus;
-            player.Play();
+            if (preferences.LauncherButtonSounds)
+            {
+                player.Stream = LauncherAssets.menu_focus;
+                player.Play();
+            }
         }
 
         private void playBtnClick()
         {
-            player.Stream = LauncherAssets.menu_accept;
-            player.Play();
+            if (preferences.LauncherButtonSounds)
+            {
+                player.Stream = LauncherAssets.menu_accept;
+                player.Play();
+            }
         }
 
         private void launchBtn_Click(object sender, EventArgs e)
@@ -380,5 +470,11 @@ namespace Converter.Launcher.App.Forms
         {
             checkForUpdatesBtn.Image = LauncherAssets.checkforupdates;
         }
+
+        private void checkForUpdatesBtn_Click(object sender, EventArgs e)
+        {
+            CheckForUpdates();
+        }
+
     }
 }

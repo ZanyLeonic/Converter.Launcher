@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Converter.Launcher.Lib;
+using System.Threading;
 
 namespace Converter.Launcher.App.Forms
 {
@@ -22,6 +23,11 @@ namespace Converter.Launcher.App.Forms
         System.Drawing.Point NewPoint = new System.Drawing.Point();
         int X = 0;
         int Y = 0;
+
+        System.Media.SoundPlayer player1 =
+        new System.Media.SoundPlayer();
+
+        Update up = new Update();
 
         public About()
         {
@@ -34,16 +40,6 @@ namespace Converter.Launcher.App.Forms
             appVersion.Text = LauncherAssets.AppVersion;
             appName.Parent = this;
             appVersion.Parent = this;
-        }
-
-        private void gameGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            //func.OpenUri("http://github.com/VoidStudiosDev/ProjectOminous");
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-           // func.OpenUri("http://github.com/VoidStudiosDev/ProjectOminous-Updater");
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
@@ -70,18 +66,23 @@ namespace Converter.Launcher.App.Forms
 
         private void closeBtn_Click_1(object sender, EventArgs e)
         {
+            if (up.preferences.LauncherButtonSounds)
+            {
+                Thread thread = new Thread(player1.Play);
+                player1.Stream = LauncherAssets.menu_back;
+                thread.Start();
+            }
 
             this.Dispose();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void closeBtn_MouseEnter(object sender, EventArgs e)
         {
-           // e.Graphics.DrawImage(LauncherAssets.appicon_128, new Point(104, 15));
-        }
-
-        private void pictureBox1_LoadCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            
+            if (up.preferences.LauncherButtonSounds)
+            {
+                player1.Stream = LauncherAssets.menu_focus;
+                player1.Play();
+            }
         }
     }
 }

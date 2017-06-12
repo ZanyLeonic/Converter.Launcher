@@ -8,5 +8,9 @@ namespace Converter.Launcher.Lib
 {
     class CommonFunctions
     {
+        public static Preferences loadSettings()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

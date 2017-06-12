@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Converter.Launcher.Lib
 {
@@ -10,8 +6,14 @@ namespace Converter.Launcher.Lib
     {
         public bool EnableLogging           { get; set; }
         public bool CheckUpdatesOnStartup   { get; set; }
+        public bool LauncherButtonSounds    { get; set; }
         public string UpdaterDownloadFolder { get; set; }
         public string InstallFolder         { get; set; }
+    }
+
+    public class VersionInfo
+    {
+        public string version { get; }
     }
 
     public class DefaultPreferences
@@ -20,6 +22,7 @@ namespace Converter.Launcher.Lib
         {
             EnableLogging = true,
             CheckUpdatesOnStartup = true,
+            LauncherButtonSounds = true,
             UpdaterDownloadFolder = Environment.CurrentDirectory + "\\downloads",
             InstallFolder = Environment.CurrentDirectory + "\\Converter"
         };

@@ -63,16 +63,6 @@ namespace Converter.Launcher.App {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _9e1b0c42fd85bd565298252c488199ad {
-            get {
-                object obj = ResourceManager.GetObject("_9e1b0c42fd85bd565298252c488199ad", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap appicon_128 {
             get {
                 object obj = ResourceManager.GetObject("appicon_128", resourceCulture);
@@ -114,6 +104,16 @@ namespace Converter.Launcher.App {
         internal static System.Drawing.Bitmap background {
             get {
                 object obj = ResourceManager.GetObject("background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Background1 {
+            get {
+                object obj = ResourceManager.GetObject("Background1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -311,6 +311,24 @@ namespace Converter.Launcher.App {
             get {
                 object obj = ResourceManager.GetObject("readme_hover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://zanyleonic.github.io/UpdateInfo/Converter.Launcher.App/.
+        /// </summary>
+        internal static string releasenotesURL {
+            get {
+                return ResourceManager.GetString("releasenotesURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://zanyleonic.github.io/UpdateInfo/Converter/version.json.
+        /// </summary>
+        internal static string versionFileURL {
+            get {
+                return ResourceManager.GetString("versionFileURL", resourceCulture);
             }
         }
     }

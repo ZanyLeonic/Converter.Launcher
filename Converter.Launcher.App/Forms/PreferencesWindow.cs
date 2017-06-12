@@ -18,9 +18,10 @@ namespace Converter.Launcher.App.Forms
     public partial class PreferencesWindow : Form
     {
 
-        public string PreferencesFile = Environment.CurrentDirectory + "\\preferences.json";
+        GlobalVariables gv = new GlobalVariables();
         DefaultPreferences defprefs = new DefaultPreferences();
         FileFunctions ff = new FileFunctions();
+        Preferences preferences = new Preferences();
 
         bool read_error = false;
 
@@ -33,19 +34,20 @@ namespace Converter.Launcher.App.Forms
         {
             read_error = false;
 
-            if (File.Exists(PreferencesFile))
+            if (File.Exists(gv.PreferencesFile))
             {
                 try
                 {
-                    Preferences preferences = JsonConvert.DeserializeObject<Preferences>(ff.readPlainTextFile(PreferencesFile));
+                    preferences = JsonConvert.DeserializeObject<Preferences>(ff.readPlainTextFile(gv.PreferencesFile));
                     loggingbox.Checked = preferences.EnableLogging;
                     checkforupdatesbox.Checked = preferences.CheckUpdatesOnStartup;
+                    launcherSoundsBox.Checked = preferences.LauncherButtonSounds;
                     downloadfolderbox.Text = preferences.UpdaterDownloadFolder;
                     InstallfolderBox.Text = preferences.InstallFolder;
                 }
                 catch (Exception ex)
                 {
-                    DialogResult results = MessageBox.Show("Failed to load '" + PreferencesFile + "', make sure the file is accessible." + Environment.NewLine + "Exception: " + Environment.NewLine + ex, ex.Message, MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+                    DialogResult results = MessageBox.Show("Failed to load '" + gv.PreferencesFile + "', make sure the file is accessible." + Environment.NewLine + "Exception: " + Environment.NewLine + ex, ex.Message, MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
 
                     if (results == DialogResult.Abort)
                     {
@@ -69,15 +71,16 @@ namespace Converter.Launcher.App.Forms
 
                     loggingbox.Checked = defprefs.appPrefs.EnableLogging;
                     checkforupdatesbox.Checked = defprefs.appPrefs.CheckUpdatesOnStartup;
+                    launcherSoundsBox.Checked = defprefs.appPrefs.LauncherButtonSounds;
                     downloadfolderbox.Text = defprefs.appPrefs.UpdaterDownloadFolder;
                     InstallfolderBox.Text = defprefs.appPrefs.InstallFolder;
                 try
                 {
-                    ff.writeSettingsJsonFile(PreferencesFile, defprefs.appPrefs);
+                    ff.writeSettingsJsonFile(gv.PreferencesFile, defprefs.appPrefs);
                 }
                 catch (Exception ex)
                 {
-                    DialogResult results = MessageBox.Show("Failed to load '"+ PreferencesFile + "', make sure the file is accessible." + Environment.NewLine + "Exception: " + Environment.NewLine + ex, ex.Message, MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+                    DialogResult results = MessageBox.Show("Failed to load '"+ gv.PreferencesFile + "', make sure the file is accessible." + Environment.NewLine + "Exception: " + Environment.NewLine + ex, ex.Message, MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
 
                     if (results == DialogResult.Abort)
                     {
@@ -132,16 +135,22 @@ namespace Converter.Launcher.App.Forms
 
                 savingprefs.EnableLogging = loggingbox.Checked;
                 savingprefs.CheckUpdatesOnStartup = checkforupdatesbox.Checked;
+                savingprefs.LauncherButtonSounds = launcherSoundsBox.Checked;
                 savingprefs.UpdaterDownloadFolder = downloadfolderbox.Text;
                 savingprefs.InstallFolder = InstallfolderBox.Text;
 
+                if(savingprefs.EnableLogging != preferences.EnableLogging || savingprefs.LauncherButtonSounds != preferences.LauncherButtonSounds)
+                {
+                    MessageBox.Show("Some settings will be applied when the application is restarted.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 try
                 { 
-                    ff.writeSettingsJsonFile(PreferencesFile, savingprefs);
+                    ff.writeSettingsJsonFile(gv.PreferencesFile, savingprefs);
                 }
                 catch (Exception ex)
                 {
-                    DialogResult results = MessageBox.Show("Failed to write to '" + PreferencesFile + "', make sure the file is accessible." + Environment.NewLine + "Exception: " + Environment.NewLine + ex, ex.Message, MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+                    DialogResult results = MessageBox.Show("Failed to write to '" + gv.PreferencesFile + "', make sure the file is accessible." + Environment.NewLine + "Exception: " + Environment.NewLine + ex, ex.Message, MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
 
                     if (results == DialogResult.Abort)
                     {

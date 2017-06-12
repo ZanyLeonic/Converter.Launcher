@@ -66,12 +66,30 @@ namespace Converter.Launcher.Lib
             }
         }
 
+
+        public object GetLocalVersion(string path)
+        {
+            string versionFile = path + "\\version.json";
+
+            try
+            {
+                VersionInfo localver = JsonConvert.DeserializeObject<VersionInfo>(readPlainTextFile(versionFile));
+
+                return localver.version;
+            }
+            catch (Exception ex)
+            {
+                return new Exception();
+            }
+        }
+
+
         /// <summary>
-        /// Reads the local version of the mod.
+        /// Reads the local version of the mod. (from an INF file)
         /// </summary>
         /// <param name="path">Path to the version.</param>
         /// <returns>The version of the mod on the local computer. Returns null if fails.</returns>
-        public string GetLocalVersion(string path)
+        public string GetLocalVersionINF(string path)
         {
             string versionFile = path + "\\data\\version.inf";
 
